@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>AcedmiTechLearn</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="description" content="Welcome to AcedmiTechLearn"/>
+
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{%static 'img/logo.webp' %}">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{%static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{%static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{%static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <div class="container">
+        <a href="{% url 'Home' %}" class="navbar-brand d-flex align-items-center">
+            <img src="{% static 'img/logo.webp' %}" alt="logo">
+        </a>
+        <button type="button" class="navbar-toggler me-4 shadow-none" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'Home' %}" class="nav-item nav-link active">Home</a>
+                <a href="{% url 'About' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'Service' %}" class="nav-item nav-link">Service</a>
+                <a href="{% url 'Contact' %}" class="nav-item nav-link">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+{% block content %}
+
+{% endblock %}
+
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-outline-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-body footer wow fadeIn" data-wow-delay="0.2s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Address</h5>
+                <p class="mb-2"><i class="fa-solid fa-location-dot me-3"></i>North Lebanon</p>
+                <p class="mb-2">
+                    <a href="tel:96171639299" class="btn p-0 shadow-none">
+                        <i class="fa-solid fa-phone me-3"></i>+961 71 639 299
+                    </a>
+                </p>
+                <p class="mb-2">
+                    <a href="http://wa.me/96171639299" target='_blank' rel="noreferrer" class="btn p-0 shadow-none">
+                        <i class="fa-brands fa-whatsapp me-3"></i>+961 71 639 299
+                    </a>
+                </p>
+                <p class="mb-2">
+                    <a href="mailto:gotopacademy@gmail.com" class="btn p-0 shadow-none">
+                        <i class="fa-solid fa-envelope me-3"></i>gotopacademy@gmail.com
+                    </a>
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link" href="{% url 'About' %}">About Us</a>
+                <a class="btn btn-link" href="{% url 'Service' %}">Our Services</a>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <h5 class="text-white mb-4">Project Gallery</h5>
+                <div class="row g-2">
+                    <div class="col-4">
+                        <img class="img-fluid rounded" src="{% static 'img/gallery-1.webp' %}" alt="gallery">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded" src="{% static 'img/gallery-2.webp' %}" alt="gallery">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded" src="{% static 'img/gallery-3.webp' %}" alt="gallery">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded" src="{% static 'img/gallery-4.webp' %}" alt="gallery">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded" src="{% static 'img/gallery-5.webp' %}" alt="gallery">
+                    </div>
+                    <div class="col-4">
+                        <img class="img-fluid rounded" src="{% static 'img/gallery-6.webp' %}" alt="gallery">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="copyright">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a href="{% url 'Home' %}">GoTop Academy</a>, All Right Reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer End -->
+
+<!-- JavaScript Libraries -->
+<script src="{% static 'lib/jquery-3.4.1.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
+        integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

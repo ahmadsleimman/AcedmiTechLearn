@@ -128,7 +128,7 @@ def registerUser(request):
     #             email = EmailMessage(subject=subject, body=message, to=[new_student.user.email])
     #             email.send()
     #             return render(request, 'verification_message.html')
-    return render(request, 'register.html', {'error_message': error_message})
+    return render(request, 'registerNew.html', {'error_message': error_message})
 
 
 def logout(request):

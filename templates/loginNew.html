@@ -11,43 +11,48 @@
             <div class="col-12 col-md-6 col-lg-5">
                 <h2 class="text-center fw-bold" style="color: #263238; letter-spacing: 4px">WELCOME</h2>
                 <div class="card-body p-4 p-lg-5">
-                    <div class="input-group mb-3">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
                         <span class="input-group-text">
                             <i class="fa-solid fa-user fa-xl" style="color: #0d6efd"></i>
                         </span>
-                        <div class="form-floating">
-                            <input type="email" id="email" class="form-control" placeholder="Email"/>
-                            <label for="email" style="color: #aaaaaa">Email</label>
+                            <div class="form-floating">
+                                <input type="email" id="email" class="form-control" placeholder="Email"/>
+                                <label for="email" style="color: #aaaaaa">Email</label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
+                        <div class="input-group mb-3">
                         <span class="input-group-text">
                             <i class="fa-solid fa-lock fa-xl" style="color: #0d6efd"></i>
                         </span>
-                        <div class="form-floating">
-                            <input type="password" id="password" class="form-control" placeholder="Password"/>
-                            <label for="password" style="color: #aaaaaa">Password</label>
+                            <div class="form-floating">
+                                <input type="password" id="password" class="form-control" placeholder="Password"/>
+                                <label for="password" style="color: #aaaaaa">Password</label>
+                            </div>
                         </div>
-                    </div>
-                    <p class="text-end mb-4">
-                        <a href="{% url 'password_reset' %}" class="" style="color: #aaaaaa; font-size: 14px">
-                            Forget Password ?
-                        </a>
-                    </p>
-                    <div class="mb-2 text-center">
-                        <button type="button" class="btn btn-lg" style="color:
-                        #ffffff; padding: 8px 70px; background-color: #0d6efd; border-radius: 40px; letter-spacing:
-                        2px">LOGIN
-                        </button>
-                    </div>
-                    <p class="mb-4 pb-lg-3 text-center" style="color: #7a7a7a"> Don't have an account?
-                        <a href="/register" style="color: #0d6efd"> Register here</a>
-                    </p>
-                    <div class="text-center">
-                        <a href='/' class="btn" style="color: #0d6efd; padding: 8px 50px; background-color: #ffffff;
-                        border: 2px solid #D3D3D3; border-radius: 40px">Back</a>
-                    </div>
+                        <p class="text-end mb-4">
+                            <a href="{% url 'password_reset' %}" class="" style="color: #aaaaaa; font-size: 14px">
+                                Forget Password ?
+                            </a>
+                        </p>
+                        <div class="mb-2 text-center">
+                            <button type="submit" class="btn btn-lg" style="color:#ffffff; padding: 8px 70px;
+                        background-color: #0d6efd; border-radius: 40px; letter-spacing: 2px">LOGIN
+                            </button>
+                        </div>
+                        <p class="mb-4 pb-lg-3 text-center" style="color: #7a7a7a"> Don't have an account?
+                            <a href="{% url 'Register' %}" style="color: #0d6efd"> Register here</a>
+                        </p>
+                        <div class="text-center">
+                            <a href="{% url 'Home' %}" class="btn" style="color: #0d6efd; padding: 8px 50px;
+                        background-color: #ffffff; border: 2px solid #D3D3D3; border-radius: 40px">Back</a>
+                        </div>
+                    </form>
                 </div>
+                {% if error_message %}
+                <div class="alert alert-danger mb-3">{{error_message}}</div>
+                {% endif %}
             </div>
         </div>
     </div>

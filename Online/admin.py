@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from .models import OnlineClass, OnlineRequest, OnlineOffer, OnlineOfferRequest, OnlineMessage
+from .models import OnlineClass, OnlineRequest, OnlineMessage
 from Main.models import Student
 
 
@@ -130,61 +130,6 @@ class OnlineRequestAdmin(admin.ModelAdmin):
     actions = [acceptStudent]
 
 
-class OnlineOfferAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'price', 'created')
-    search_fields = ('id', 'name')
-
-
-class OnlineOfferRequestAdmin(admin.ModelAdmin):
-    list_display = (
-        'id', 'student_id', 'student_name', 'onlineoffer_id', 'onlineoffer_name', 'onlineoffer_price', 'created')
-
-    def student_name(self, obj):
-        return obj.student.name
-
-    student_name.short_description = 'Student Name'
-
-    def student_id(self, obj):
-        return obj.student.id
-
-    student_id.short_description = 'Student ID'
-
-    def onlineoffer_name(self, obj):
-        return obj.onlineoffer.name
-
-    onlineoffer_name.short_description = 'Offer Name'
-
-    def onlineoffer_id(self, obj):
-        return obj.onlineoffer.id
-
-    onlineoffer_id.short_description = 'Offer ID'
-
-    def onlineoffer_price(self, obj):
-        return obj.onlineoffer.price
-
-    onlineoffer_price.short_description = 'Offer Price'
-
-    def acceptStudent(self, request, queryset):
-        for obj in queryset:
-            for onlineclass in obj.onlineoffer.onlineclasses.all():
-                o = OnlineClass.objects.get(id=onlineclass.id)
-                o.students.add(obj.student)
-                o.save()
-                email = obj.student.user.email
-                subject = "Congratulations! You've Been Accepted into the " + onlineclass.name
-                message = render_to_string('emails/accept_request_email.html', {
-                    'student': obj.student.name,
-                    'className': onlineclass.name,
-                    'courseName': onlineclass.course.name,
-                })
-                email = EmailMessage(subject=subject, body=message, to=[email])
-                email.send()
-            obj.delete()
-
-    acceptStudent.short_description = 'Accept Student'
-    actions = [acceptStudent]
-
-
 class OnlineMessageAdmin(admin.ModelAdmin):
     list_display = ('id', 'user_username', 'onlineclass_name', 'body', 'created')
     list_per_page = 20
@@ -202,6 +147,4 @@ class OnlineMessageAdmin(admin.ModelAdmin):
 
 admin.site.register(OnlineClass, OnlineClassAdmin)
 admin.site.register(OnlineRequest, OnlineRequestAdmin)
-admin.site.register(OnlineOffer, OnlineOfferAdmin)
-admin.site.register(OnlineOfferRequest, OnlineOfferRequestAdmin)
 admin.site.register(OnlineMessage, OnlineMessageAdmin)

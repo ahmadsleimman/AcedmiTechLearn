@@ -1,0 +1,65 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<section class="register">
+    <div class="container">
+        <div class="row flex-column-reverse flex-md-row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-6 col-lg-5">
+                <h2 class="text-center fw-bold" style="color: #263238; letter-spacing: 4px">REGISTER</h2>
+                <div class="card-body p-4">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-user fa-xl" style="color: #0d6efd"></i>
+                            </span>
+                            <div class="form-floating">
+                                <input type="text" id="fullname" class="form-control" placeholder="Full Name"/>
+                                <label for="fullname" class="form-label" style="color: #aaaaaa">Full Name</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-envelope fa-xl" style="color: #0d6efd"></i>
+                            </span>
+                            <div class="form-floating">
+                                <input type="email" id="email" class="form-control" placeholder="Email"/>
+                                <label for="email" class="form-label" style="color: #aaaaaa">Email</label>
+                            </div>
+                        </div>
+                        <div class="input-group mb-4">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-lock fa-xl" style="color: #0d6efd"></i>
+                            </span>
+                            <div class="form-floating">
+                                <input type="password" id="password" class="form-control" placeholder="Password"/>
+                                <label for="password" class="form-label" style="color: #aaaaaa">Password</label>
+                            </div>
+                        </div>
+                        <div class="mb-2 text-center">
+                            <button type="submit" class="btn btn-lg" style="color:#ffffff; padding: 8px 70px;
+                        background-color: #0d6efd; border-radius: 40px; letter-spacing:2px">REGISTER
+                            </button>
+                        </div>
+                        <p class="mb-2 pb-lg-3 text-center" style="color: #7a7a7a">Already have an account ?
+                            <a href="{% url 'Login' %}" style="color: #0d6efd">LOGIN</a>
+                        </p>
+                        <div class="text-center">
+                            <a href="{% url 'Home' %}" class="btn" style="color:#0d6efd; padding: 8px 50px;
+                        background-color: #ffffff; border: 2px solid #D3D3D3; border-radius: 40px ">Back</a>
+                        </div>
+                    </form>
+                </div>
+                {% if error_message %}
+                <div class="alert alert-danger mb-3">{{error_message}}</div>
+                {% endif %}
+            </div>
+            <div class="col-12 col-md-6 col-lg-7">
+                <img src="{%static 'img/signup.jpg' %}" alt="register" class="img-fluid w-100 h-100"/>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

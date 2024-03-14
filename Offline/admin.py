@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import OfflineClass, OfflineRequest, OfflineOffer, OfflineOfferRequest, OfflineMessage
+from .models import OfflineClass, OfflineRequest, OfflineMessage
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from Main.models import Student
@@ -129,61 +129,6 @@ class OfflineRequestAdmin(admin.ModelAdmin):
     actions = [acceptStudent]
 
 
-class OfflineOfferAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'price', 'created')
-    search_fields = ('id', 'name')
-
-
-class OfflineOfferRequestAdmin(admin.ModelAdmin):
-    list_display = (
-        'id', 'student_id', 'student_name', 'offlineoffer_id', 'offlineoffer_name', 'offlineoffer_price', 'created')
-
-    def student_name(self, obj):
-        return obj.student.name
-
-    student_name.short_description = 'Student Name'
-
-    def student_id(self, obj):
-        return obj.student.id
-
-    student_id.short_description = 'Student ID'
-
-    def offlineoffer_name(self, obj):
-        return obj.offlineoffer.name
-
-    offlineoffer_name.short_description = 'Offer Name'
-
-    def offlineoffer_id(self, obj):
-        return obj.offlineoffer.id
-
-    offlineoffer_id.short_description = 'Offer ID'
-
-    def offlineoffer_price(self, obj):
-        return obj.offlineoffer.price
-
-    offlineoffer_price.short_description = 'Offer Price'
-
-    def acceptStudent(self, request, queryset):
-        for obj in queryset:
-            for offlineclass in obj.offlineoffer.offlineclasses.all():
-                o = OfflineClass.objects.get(id=offlineclass.id)
-                o.students.add(obj.student)
-                o.save()
-                email = obj.student.user.email
-                subject = "Congratulations! You've Been Accepted into the " + offlineclass.name
-                message = render_to_string('emails/accept_request_email.html', {
-                    'student': obj.student.name,
-                    'className': offlineclass.name,
-                    'courseName': offlineclass.course.name,
-                })
-                email = EmailMessage(subject=subject, body=message, to=[email])
-                email.send()
-            obj.delete()
-
-    acceptStudent.short_description = 'Accept Student'
-    actions = [acceptStudent]
-
-
 class OfflineMessageAdmin(admin.ModelAdmin):
     list_display = ('id', 'user_username', 'offlineclass_name', 'body', 'created')
     list_per_page = 20
@@ -201,6 +146,4 @@ class OfflineMessageAdmin(admin.ModelAdmin):
 
 admin.site.register(OfflineClass, OfflineClassAdmin)
 admin.site.register(OfflineRequest, OfflineRequestAdmin)
-admin.site.register(OfflineOffer, OfflineOfferAdmin)
-admin.site.register(OfflineOfferRequest, OfflineOfferRequestAdmin)
 admin.site.register(OfflineMessage, OfflineMessageAdmin)

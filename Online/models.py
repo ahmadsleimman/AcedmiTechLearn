@@ -48,39 +48,6 @@ class OnlineRequest(models.Model):
         return f"{self.id}"
 
 
-class OnlineOffer(models.Model):
-    name = models.CharField(max_length=60, verbose_name='Name')
-    onlineclasses = models.ManyToManyField(OnlineClass, blank=True)
-    price = models.FloatField(verbose_name='Price')
-    updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-created']
-        verbose_name = "Online Offer"
-        verbose_name_plural = "Online Offers"
-        db_table = 'Online_Offer'
-
-    def __str__(self):
-        return self.name
-
-
-class OnlineOfferRequest(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    onlineoffer = models.ForeignKey(OnlineOffer, on_delete=models.CASCADE)
-    updated = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        ordering = ['-created']
-        verbose_name = "Online Offer Request"
-        verbose_name_plural = " Online Offer Requests"
-        db_table = 'Online_Offer_Request'
-
-    def __str__(self):
-        return f"{self.id}"
-
-
 class OnlineMessage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     onlineclass = models.ForeignKey(OnlineClass, on_delete=models.CASCADE)

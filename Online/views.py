@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import OnlineClass, OnlineOffer, OnlineRequest, OnlineOfferRequest, OnlineMessage
+from .models import OnlineClass, OnlineRequest, OnlineMessage
 from Main.models import Student, Teacher
 
 # Create your views here.
@@ -8,11 +8,9 @@ from Main.models import Student, Teacher
 
 def Online(request):
     onlineclasses = OnlineClass.objects.all()
-    onlineoffers = OnlineOffer.objects.all()
 
     context = {
         "onlineclasses": onlineclasses,
-        "onlineoffers": onlineoffers,
     }
 
     return render(request, 'online.html', context)
@@ -72,42 +70,3 @@ def OnlineEnroll(request, id):
         onlinerequest = OnlineRequest.objects.create(student=studentID, onlineclass=onlineclass)
         onlinerequest.save()
     return redirect("OnlineDetails", id=id)
-
-
-@login_required(login_url='Login')
-def OnlineOfferDetails(request, id):
-    try:
-        onlineoffer = OnlineOffer.objects.get(id=id)
-    except:
-        return redirect("NotFound")
-
-    context = {
-        "onlineoffer": onlineoffer,
-    }
-
-    if hasattr(request.user, 'student'):
-        student = Student.objects.get(user=request.user)
-
-        try:
-            onlineofferrequest = OnlineOfferRequest.objects.get(student=student)
-            isRequested = True
-        except:
-            isRequested = False
-
-        context.update({"isRequested": isRequested})
-
-    return render(request, 'online-offer.html', context)
-
-
-@login_required(login_url='Login')
-def OnlineOfferEnroll(request, id):
-    try:
-        onlineoffer = OnlineOffer.objects.get(id=id)
-    except:
-        return redirect("NotFound")
-
-    if hasattr(request.user, 'student'):
-        studentID = Student.objects.get(user=request.user)
-        onlineofferrequest = OnlineOfferRequest.objects.create(student=studentID, onlineoffer=onlineoffer)
-        onlineofferrequest.save()
-    return redirect("OnlineOffer", id=id)

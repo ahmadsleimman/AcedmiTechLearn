@@ -25,7 +25,10 @@
     <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
     <link href="{%static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <!--    <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+          integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
     <!-- Template Stylesheet -->
     <link href="{%static 'css/style.css' %}" rel="stylesheet">
@@ -36,22 +39,74 @@
 <!-- Navbar Start -->
 <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
     <div class="container">
-        <a href="{% url 'Home' %}" class="navbar-brand d-flex align-items-center">
-            <img src="{% static 'img/logo.webp' %}" alt="logo">
-        </a>
-        <button type="button" class="navbar-toggler me-4 shadow-none" data-bs-toggle="collapse"
-                data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
+        <a class="navbar-brand d-none d-lg-block" href="{% url 'Home' %}">AcedmiTechLearn</a>
+        <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="{% url 'Home' %}" class="nav-item nav-link active">Home</a>
-                <a href="{% url 'About' %}" class="nav-item nav-link">About</a>
-                <a href="{% url 'Service' %}" class="nav-item nav-link">Service</a>
-                <a href="{% url 'Contact' %}" class="nav-item nav-link">Contact Us</a>
+        <div class="offcanvas offcanvas-start" tabIndex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Hello User</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-center flex-grow-1 pe-3 gap-2 gap-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'About' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Service' %}">Service</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Classes</a>
+                        <div class="dropdown-menu bg-light m-0">
+                            <a href="{% url 'Online' %}" class="dropdown-item">Online</a>
+                            <a href="{% url 'Offline' %}" class="dropdown-item">Offline</a>
+                            <a href="{% url 'VIP' %}" class="dropdown-item">VIP</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'Contact' %}">Contact Us</a>
+                    </li>
+                </ul>
             </div>
         </div>
+        <div class="dropdown">
+            <button class="btn dropdown-toggle border-0 hidden-arrow" type="button" data-bs-toggle="dropdown"
+                    data-bs-auto-close="true" aria-expanded="false">
+                <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
+                     height="40" alt="avatar"
+                />
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+
+                {% if request.user.is_authenticated %}
+                <li class='dropdown-item'>
+                    <a class="nav-link" href="{% url 'Logout' %}">My Classes</a>
+                </li>
+                <li class='dropdown-item'>
+                    <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
+                </li>
+                {% endif %}
+
+                {% if not request.user.is_authenticated %}
+                <li class="dropdown-item">
+                    <a class="nav-link" href="{% url 'Register' %}">Register</a>
+                </li>
+                <li class="dropdown-item">
+                    <a class="nav-link" href="{% url 'Login' %}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
     </div>
+
 </nav>
 <!-- Navbar End -->
 
@@ -130,8 +185,8 @@
 
 <!-- JavaScript Libraries -->
 <script src="{% static 'lib/jquery-3.4.1.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.bundle.min.js"
-        integrity="sha512-ToL6UYWePxjhDQKNioSi4AyJ5KkRxY+F1+Fi7Jgh0Hp5Kk2/s8FD7zusJDdonfe5B00Qw+B8taXxF6CFLnqNCw=="
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"
+        integrity="sha512-7Pi/otdlbbCR+LnW+F7PwFcSDJOuUJB3OxtEHbg4vSMvzvJjde4Po1v4BR9Gdc9aXNUNFVUY+SK51wWT8WF0Gg=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="{% static 'lib/wow/wow.min.js' %}"></script>
 <script src="{% static 'lib/easing/easing.min.js' %}"></script>

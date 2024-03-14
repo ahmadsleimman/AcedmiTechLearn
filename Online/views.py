@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-
+from .models import OnlineClass, OnlineOffer, OnlineRequest, OnlineOfferRequest, OnlineMessage
+from Main.models import Student, Teacher
 
 # Create your views here.
 

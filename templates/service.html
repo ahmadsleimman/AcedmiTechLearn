@@ -1,0 +1,133 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Navbar Start -->
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
+    <div class="container">
+        <a href="{% url 'Home' %}" class="navbar-brand d-flex align-items-center">
+            <img src="{% static 'img/logo.webp' %}" alt="logo">
+        </a>
+        <button type="button" class="navbar-toggler me-4 shadow-none" data-bs-toggle="collapse"
+                data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'Home' %}" class="nav-item nav-link">Home</a>
+                <a href="{% url 'About' %}" class="nav-item nav-link">About</a>
+                <a href="{% url 'Service' %}" class="nav-item nav-link active">Service</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Classes</a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{% url 'Online' %}" class="dropdown-item">Online</a>
+                        <a href="{% url 'Offline' %}" class="dropdown-item">Offline</a>
+                        <a href="{% url 'VIP' %}" class="dropdown-item">VIP</a>
+                    </div>
+                </div>
+
+                <a href="{% url 'Contact' %}" class="nav-item nav-link">Contact Us</a>
+
+                {% if request.user.is_authenticated %}
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Hello
+                        {{ request.user.username }}
+                    </a>
+                    <div class="dropdown-menu bg-light m-0">
+                        <a href="{% url 'MyClasses' %}" class="dropdown-item">My Classes</a>
+                        <a href="{% url 'Logout' %}" class="dropdown-item">Logout</a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if not request.user.is_authenticated %}
+                <a href="{% url 'Register' %}" class="nav-item nav-link">Register</a>
+                <a href="{% url 'Login' %}" class="nav-item nav-link">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5">
+    <div class="container">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Services</h1>
+        <nav aria-label="breadcrumb animated slideInDown">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-white" href="{% url 'Home' %}">Home</a></li>
+                <li class="breadcrumb-item text-white active" aria-current="page">Services</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h2 class="text-primary">Our Services</h2>
+            <h1 class="mb-4">We Are Pioneers In The World Of Education</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4 col-lg-3 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded overflow-hidden">
+                    <img class="img-fluid" src="{% static 'img/service-2.webp' %}" alt="online">
+                    <div class="position-relative p-4 pt-0">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-book fa-3x"></i>
+                        </div>
+                        <h1 class="mb-3">Online</h1>
+                        <p> Interactive virtual sessions paired with Google Classroom access for effortless resource
+                            management.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item rounded overflow-hidden">
+                    <img class="img-fluid" src="{% static 'img/service-1.webp' %}" alt="offline">
+                    <div class="position-relative p-4 pt-0">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-book fa-3x"></i>
+                        </div>
+                        <h1 class="mb-3">Offline</h1>
+                        <p>Dynamic virtual learning, utilizing Google Classroom for record sharing and fostering
+                            collaboration.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item rounded overflow-hidden">
+                    <img class="img-fluid" src="{% static 'img/service-3.webp' %}" alt="vip">
+                    <div class="position-relative p-4 pt-0">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-book fa-3x"></i>
+                        </div>
+                        <h1 class="mb-3">VIP</h1>
+                        <p>Exclusive one-on-one sessions to elevate the learning journey with personalized
+                            attention.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-lg-3 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="service-item rounded overflow-hidden">
+                    <img class="img-fluid" src="{% static 'img/service-4.webp' %}" alt="chat">
+                    <div class="position-relative p-4 pt-0">
+                        <div class="service-icon">
+                            <i class="fa-solid fa-comments fa-3x"></i>
+                        </div>
+                        <h1 class="mb-3">Chat</h1>
+                        <p>Connect and engage across online and offline classes through integrated chat for continuous
+                            interaction.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Service End -->
+
+{% endblock content %}

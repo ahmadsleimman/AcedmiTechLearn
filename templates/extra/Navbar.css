@@ -1,0 +1,18 @@
+.navbar .navbar-toggler {
+    border: none;
+    font-size: 30px;
+}
+
+.navbar .navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.offcanvas.offcanvas-start {
+    width: 30vw !important;
+}
+
+@media (max-width: 768px) {
+    .offcanvas.offcanvas-start {
+        width: 50vw !important;
+    }
+}

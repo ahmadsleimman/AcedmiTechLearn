@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'jazzmin',
+    'daphne',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,6 +74,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'AcedmiTechLearn.wsgi.application'
+ASGI_APPLICATION = 'AcedmiTechLearn.asgi.application'
+
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer'
+#     },
+# }
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -82,6 +91,17 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': '',
+#         'USER': '',
+#         'PASSWORD': '',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -128,3 +148,51 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True
+
+# JAZZMIN_SETTINGS = {
+#     "site_title": "GoTop Acedemy Admin",
+#     "site_header": "GoTop Acedemy",
+#     "site_brand": "GoTop Acedemy",
+#     "welcome_sign": "Welcome to the Admin Panel",
+#     "copyright": "Wizo Team",
+#     "order_with_respect_to": ["App1.Student", "App1.Teacher", "App1.Course", "App1.OnlineClass", "App1.OnlineRequest",
+#                               "App1.OnlineOffer", "App1.OnlineOfferRequest", "App1.OnlineMessage", "App1.OfflineClass",
+#                               "App1.OfflineRequest", "App1.OfflineOffer", "App1.OfflineOfferRequest",
+#                               "App1.OfflineMessage", "App1.VIPCourse", "App1.VIPClass", "App1.VIPRequest",
+#                               "App1.VIPMessage", "App1.Inbox"],
+#     "icons": {
+#         "auth": "fas fa-users-cog",
+#         "auth.user": "fas fa-user",
+#         "auth.Group": "fas fa-users",
+#
+#         "App1.Student": "fa fa-user",
+#         "App1.Teacher": "fa fa-graduation-cap",
+#         "App1.Course": "fa fa-book",
+#
+#         "App1.OnlineClass": "fa fa-book",
+#         "App1.OnlineRequest": "fa fa-inbox",
+#         "App1.OnlineOffer": "fa fa-box",
+#         "App1.OnlineOfferRequest": "fa fa-inbox",
+#         "App1.OnlineMessage": "fa fa-comments",
+#
+#         "App1.OfflineClass": "fa fa-book",
+#         "App1.OfflineRequest": "fa fa-inbox",
+#         "App1.OfflineOffer": "fa fa-box",
+#         "App1.OfflineOfferRequest": "fa fa-inbox",
+#         "App1.OfflineMessage": "fa fa-comments",
+#
+#         "App1.VIPCourse": "fa fa-book",
+#         "App1.VIPClass": "fa fa-book",
+#         "App1.VIPRequest": "fa fa-inbox",
+#         "App1.VIPMessage": "fa fa-comments",
+#
+#         "App1.Inbox": "fa fa-inbox",
+#     },
+# }

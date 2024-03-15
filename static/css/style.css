@@ -150,6 +150,10 @@
     }
 }
 
+.dropdown-toggle.hidden-arrow::after {
+    display: none !important;
+}
+
 
 /*** Header ***/
 .owl-carousel-inner {

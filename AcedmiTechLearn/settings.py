@@ -156,43 +156,37 @@ EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 
-# JAZZMIN_SETTINGS = {
-#     "site_title": "GoTop Acedemy Admin",
-#     "site_header": "GoTop Acedemy",
-#     "site_brand": "GoTop Acedemy",
-#     "welcome_sign": "Welcome to the Admin Panel",
-#     "copyright": "Wizo Team",
-#     "order_with_respect_to": ["App1.Student", "App1.Teacher", "App1.Course", "App1.OnlineClass", "App1.OnlineRequest",
-#                               "App1.OnlineOffer", "App1.OnlineOfferRequest", "App1.OnlineMessage", "App1.OfflineClass",
-#                               "App1.OfflineRequest", "App1.OfflineOffer", "App1.OfflineOfferRequest",
-#                               "App1.OfflineMessage", "App1.VIPCourse", "App1.VIPClass", "App1.VIPRequest",
-#                               "App1.VIPMessage", "App1.Inbox"],
-#     "icons": {
-#         "auth": "fas fa-users-cog",
-#         "auth.user": "fas fa-user",
-#         "auth.Group": "fas fa-users",
-#
-#         "App1.Student": "fa fa-user",
-#         "App1.Teacher": "fa fa-graduation-cap",
-#         "App1.Course": "fa fa-book",
-#
-#         "App1.OnlineClass": "fa fa-book",
-#         "App1.OnlineRequest": "fa fa-inbox",
-#         "App1.OnlineOffer": "fa fa-box",
-#         "App1.OnlineOfferRequest": "fa fa-inbox",
-#         "App1.OnlineMessage": "fa fa-comments",
-#
-#         "App1.OfflineClass": "fa fa-book",
-#         "App1.OfflineRequest": "fa fa-inbox",
-#         "App1.OfflineOffer": "fa fa-box",
-#         "App1.OfflineOfferRequest": "fa fa-inbox",
-#         "App1.OfflineMessage": "fa fa-comments",
-#
-#         "App1.VIPCourse": "fa fa-book",
-#         "App1.VIPClass": "fa fa-book",
-#         "App1.VIPRequest": "fa fa-inbox",
-#         "App1.VIPMessage": "fa fa-comments",
-#
-#         "App1.Inbox": "fa fa-inbox",
-#     },
-# }
+JAZZMIN_SETTINGS = {
+    "site_title": "AcedmiTechLearn Admin",
+    "site_header": "AcedmiTechLearn",
+    "site_brand": "AcedmiTechLearn",
+    "welcome_sign": "Welcome to the Admin Panel",
+    # "copyright": "Wizo Team",
+    "order_with_respect_to": ["Main.Student", "Main.Teacher", "Main.Course", "Main.Inbox", "Online.OnlineClass",
+                              "Online.OnlineRequest", "Online.OnlineMessage", "Offline.OfflineClass",
+                              "Offline.OfflineRequest", "Offline.OfflineMessage", "VIP.VIPCourse", "VIP.VIPClass",
+                              "VIP.VIPRequest", "VIP.VIPMessage"],
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+
+        "Main.Student": "fa fa-user",
+        "Main.Teacher": "fa fa-graduation-cap",
+        "Main.Course": "fa fa-book",
+        "Main.Inbox": "fa fa-inbox",
+
+        "Online.OnlineClass": "fa fa-book",
+        "Online.OnlineRequest": "fa fa-inbox",
+        "Online.OnlineMessage": "fa fa-comments",
+
+        "Offline.OfflineClass": "fa fa-book",
+        "Offline.OfflineRequest": "fa fa-inbox",
+        "Offline.OfflineMessage": "fa fa-comments",
+
+        "VIP.VIPCourse": "fa fa-book",
+        "VIP.VIPClass": "fa fa-book",
+        "VIP.VIPRequest": "fa fa-inbox",
+        "VIP.VIPMessage": "fa fa-comments",
+    },
+}

@@ -12,7 +12,7 @@ def Offline(request):
         "offlineclasses": offlineclasses,
     }
 
-    return render(request, 'offline.html', context)
+    return render(request, 'offline/offline.html', context)
 
 
 @login_required(login_url='Login')
@@ -54,7 +54,7 @@ def OfflineDetails(request, id):
 
         context.update({"isAdmin": isAdmin})
 
-    return render(request, 'offline-details.html', context)
+    return render(request, 'offline/offline-details.html', context)
 
 
 @login_required(login_url='Login')

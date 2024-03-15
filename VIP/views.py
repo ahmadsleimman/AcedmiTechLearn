@@ -10,7 +10,7 @@ def VIP(request):
     context = {
         "vipcourses": vipcourses,
     }
-    return render(request, 'vip.html', context)
+    return render(request, 'vip/vip.html', context)
 
 
 @login_required(login_url='Login')
@@ -44,7 +44,7 @@ def VIPPrivateClass(request, id):
 
         context.update({"isAdmin": isAdmin})
 
-    return render(request, 'vip-private.html', context)
+    return render(request, 'vip/vip-private.html', context)
 
 
 @login_required(login_url='Login')
@@ -86,7 +86,7 @@ def VIPDetails(request, id):
 
         context.update({"isAdmin": isAdmin})
 
-    return render(request, 'vip-details.html', context)
+    return render(request, 'vip/vip-details.html', context)
 
 
 @login_required(login_url='Login')

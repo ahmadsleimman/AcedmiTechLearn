@@ -91,42 +91,5 @@
 </div>
 <!-- Offline Classes End   -->
 
-<!-- Offline Offers Start   -->
-<div class="py-5">
-    <div class="container">
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.7s" style="max-width: 600px;">
-            <h2>Our Offline Offers</h2>
-        </div>
-        {% if offlineoffers|length > 0 %}
-        <div class="row g-5">
-            {% for offlineoffer in offlineoffers %}
-            <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.9s">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="card-title">Name: {{offlineoffer.name}}</div>
-                        {% for offerclass in offlineoffer.offlineclasses.all %}
-                        <div class="card-text">Class: {{offerclass.name}}</div>
-                        {% endfor %}
-                    </div>
-                    <div class="price-box d-flex flex-row align-items-center">
-                        <div class="course-author-name">
-                            <a href="{% url 'OfflineOffer' id=offlineoffer.id %}" class="btn">View More Details</a>
-                        </div>
-                        <div class="course-price d-flex flex-column align-items-center justify-content-center">
-                            <span>${{offlineoffer.price}}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.9s" style="max-width: 600px;">
-            <h3>No Available Offline Offers</h3>
-        </div>
-        {% endif %}
-    </div>
-</div>
-<!-- Offline Offers End   -->
 
 {% endblock content %}

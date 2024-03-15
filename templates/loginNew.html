@@ -11,23 +11,25 @@
             <div class="col-12 col-md-6 col-lg-5">
                 <h2 class="text-center fw-bold" style="color: #263238; letter-spacing: 4px">WELCOME</h2>
                 <div class="card-body p-4 p-lg-5">
-                    <form method="POST" action="">
+                    <form method="POST" action="/login">
                         {% csrf_token %}
                         <div class="input-group mb-3">
-                        <span class="input-group-text">
-                            <i class="fa-solid fa-user fa-xl" style="color: #0d6efd"></i>
-                        </span>
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-user fa-xl" style="color: #0d6efd"></i>
+                            </span>
                             <div class="form-floating">
-                                <input type="email" id="email" class="form-control" placeholder="Email"/>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email"
+                                       required/>
                                 <label for="email" style="color: #aaaaaa">Email</label>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                        <span class="input-group-text">
-                            <i class="fa-solid fa-lock fa-xl" style="color: #0d6efd"></i>
-                        </span>
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-lock fa-xl" style="color: #0d6efd"></i>
+                            </span>
                             <div class="form-floating">
-                                <input type="password" id="password" class="form-control" placeholder="Password"/>
+                                <input type="password" name="password" id="password" class="form-control"
+                                       placeholder="Password" required/>
                                 <label for="password" style="color: #aaaaaa">Password</label>
                             </div>
                         </div>

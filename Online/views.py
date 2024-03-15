@@ -13,7 +13,7 @@ def Online(request):
         "onlineclasses": onlineclasses,
     }
 
-    return render(request, 'online.html', context)
+    return render(request, 'online/online.html', context)
 
 
 @login_required(login_url='Login')
@@ -55,7 +55,7 @@ def OnlineDetails(request, id):
 
         context.update({"isAdmin": isAdmin})
 
-    return render(request, 'online-details.html', context)
+    return render(request, 'online/online-details.html', context)
 
 
 @login_required(login_url='Login')

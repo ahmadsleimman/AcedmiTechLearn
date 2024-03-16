@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import OfflineClass, OfflineRequest, OfflineMessage
+from .models import OfflineClass, OfflineRequest, OfflineMessage, OfflineFinancialAid
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from Main.models import Student
@@ -144,6 +144,32 @@ class OfflineMessageAdmin(admin.ModelAdmin):
     offlineclass_name.short_description = 'Class'
 
 
+class OfflineFinancialAidAdmin(admin.ModelAdmin):
+    list_display = ('id', 'student_id', 'student_name', 'offlineclass_id', 'offlineclass_name', 'message', 'created')
+    list_per_page = 5
+
+    def student_name(self, obj):
+        return obj.student.name
+
+    student_name.short_description = 'Student Name'
+
+    def student_id(self, obj):
+        return obj.student.id
+
+    student_id.short_description = 'Student ID'
+
+    def offlineclass_name(self, obj):
+        return obj.offlineclass.name
+
+    offlineclass_name.short_description = 'Class Name'
+
+    def offlineclass_id(self, obj):
+        return obj.offlineclass.id
+
+    offlineclass_id.short_description = 'Class ID'
+
+
 admin.site.register(OfflineClass, OfflineClassAdmin)
 admin.site.register(OfflineRequest, OfflineRequestAdmin)
 admin.site.register(OfflineMessage, OfflineMessageAdmin)
+admin.site.register(OfflineFinancialAid, OfflineFinancialAidAdmin)

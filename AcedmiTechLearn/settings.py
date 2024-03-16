@@ -163,8 +163,9 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Welcome to the Admin Panel",
     # "copyright": "Wizo Team",
     "order_with_respect_to": ["Main.Student", "Main.Teacher", "Main.Course", "Main.Inbox", "Online.OnlineClass",
-                              "Online.OnlineRequest", "Online.OnlineMessage", "Offline.OfflineClass",
-                              "Offline.OfflineRequest", "Offline.OfflineMessage", "VIP.VIPCourse", "VIP.VIPClass",
+                              "Online.OnlineRequest", "Online.OnlineMessage", "Online.OnlineFinancialAid",
+                              "Offline.OfflineClass", "Offline.OfflineRequest", "Offline.OfflineMessage",
+                              "Offline.OfflineFinancialAid", "VIP.VIPCourse", "VIP.VIPClass",
                               "VIP.VIPRequest", "VIP.VIPMessage"],
     "icons": {
         "auth": "fas fa-users-cog",

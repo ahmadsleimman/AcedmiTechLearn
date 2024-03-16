@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
-from .models import OnlineClass, OnlineRequest, OnlineMessage
+from .models import OnlineClass, OnlineRequest, OnlineMessage, OnlineFinancialAid
 from Main.models import Student
 
 
@@ -145,6 +145,32 @@ class OnlineMessageAdmin(admin.ModelAdmin):
     onlineclass_name.short_description = 'Class'
 
 
+class OnlineFinancialAidAdmin(admin.ModelAdmin):
+    list_display = ('id', 'student_id', 'student_name', 'onlineclass_id', 'onlineclass_name', 'message', 'created')
+    list_per_page = 5
+
+    def student_name(self, obj):
+        return obj.student.name
+
+    student_name.short_description = 'Student Name'
+
+    def student_id(self, obj):
+        return obj.student.id
+
+    student_id.short_description = 'Student ID'
+
+    def onlineclass_name(self, obj):
+        return obj.onlineclass.name
+
+    onlineclass_name.short_description = 'Class Name'
+
+    def onlineclass_id(self, obj):
+        return obj.onlineclass.id
+
+    onlineclass_id.short_description = 'Class ID'
+
+
 admin.site.register(OnlineClass, OnlineClassAdmin)
 admin.site.register(OnlineRequest, OnlineRequestAdmin)
 admin.site.register(OnlineMessage, OnlineMessageAdmin)
+admin.site.register(OnlineFinancialAid, OnlineFinancialAidAdmin)

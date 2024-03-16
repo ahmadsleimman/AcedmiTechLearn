@@ -65,3 +65,20 @@ class OnlineMessage(models.Model):
 
     def __str__(self):
         return f"{self.id}"
+
+
+class OnlineFinancialAid(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    onlineclass = models.ForeignKey(OnlineClass, on_delete=models.CASCADE)
+    message = models.TextField(verbose_name='Message')
+    updated = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['created']
+        verbose_name = "Online Financial Aid"
+        verbose_name_plural = "Online Financial Aids"
+        db_table = 'Online_Financial_Aid'
+
+    def __str__(self):
+        return f"{self.id}"

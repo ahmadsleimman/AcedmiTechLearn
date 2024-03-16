@@ -4,6 +4,10 @@
     --dark: #1A2A36;
 }
 
+a {
+    text-decoration: none;
+}
+
 .fw-medium {
     font-weight: 500 !important;
 }
@@ -258,30 +262,34 @@
 
 
 /*** Service ***/
-.service-item {
-    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+.service-item div {
+    z-index: 1;
 }
 
-.service-icon {
-    position: relative;
-    margin: -50px 0 25px 0;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    background: #FFFFFF;
-    border-radius: 100px;
-    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
-    transition: .5s;
+.service-item div::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 2px 2px 0 0;
+    transition: .3s;
+    z-index: -1;
 }
 
-.service-item:hover .service-icon {
-    color: #FFFFFF;
+.service-item div:hover::after {
+    width: 100%;
     background: var(--primary);
 }
 
+.service-item * {
+    transition: .3s;
+}
+
+.service-item:hover * {
+    color: var(--light) !important;
+}
 
 /*** Feature ***/
 .feature-item {
@@ -303,6 +311,7 @@
 }
 
 /*** Footer ***/
+/*
 .footer .btn.btn-social {
     margin-right: 5px;
     color: #9B9B9B;
@@ -353,6 +362,8 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+*/
+
 
 /*** Classes ***/
 .price-box {
@@ -421,7 +432,7 @@
 }
 
 #chat1 .form-control {
-border-color: transparent;
+    border-color: transparent;
 }
 
 #chat1 .form-control:focus {
@@ -480,7 +491,6 @@ border-color: transparent;
 }
 
 @media (min-width: 768px) {
-
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 200px;
@@ -488,7 +498,6 @@ border-color: transparent;
 }
 
 @media (min-width: 992px) {
-
     .testimonial-carousel::before,
     .testimonial-carousel::after {
         width: 300px;
@@ -519,10 +528,6 @@ border-color: transparent;
     background: none !important;
     box-shadow: none !important;
     border-bottom: 2px solid #0d6efd !important;
-}
-
-.login a {
-    text-decoration: none;
 }
 
 /*** Register ***/

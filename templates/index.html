@@ -90,7 +90,10 @@
 
                 {% if request.user.is_authenticated %}
                 <li class='dropdown-item'>
-                    <a class="nav-link" href="{% url 'Logout' %}">My Classes</a>
+                    <a class="nav-link" href="{% url 'MyClasses' %}">My Classes</a>
+                </li>
+                <li class='dropdown-item'>
+                    <a class="nav-link" href="{% url 'MyClasses' %}">My Profile</a>
                 </li>
                 <li class='dropdown-item'>
                     <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
@@ -121,7 +124,7 @@
 <a href="#" class="btn btn-lg btn-outline-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-light mt-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+<div class="container-fluid bg-dark text-light mt-5 pt-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
@@ -145,11 +148,11 @@
                 <h3 class="text-white mb-4">Popular Links</h3>
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-light mb-2" href="{% url 'Online' %}">
-                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Online</a>
+                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Online Classes</a>
                     <a class="text-light mb-2" href="{% url 'Offline' %}">
-                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Offline</a>
+                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Offline Classes</a>
                     <a class="text-light mb-2" href="{% url 'VIP' %}">
-                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>VIP</a>
+                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>VIP Classes</a>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6">
@@ -188,12 +191,14 @@
         </div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="mb-md-0">&copy;
-                    <a class="text-white border-bottom" href="{% url 'Home' %}">AcedmiTechLearn</a>.
-                    All Rights Reserved.
-                </p>
+        <div class="copyright py-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy;
+                        <a class="text-white border-bottom" href="{% url 'Home' %}">AcedmiTechLearn</a>.
+                        All Rights Reserved.
+                    </p>
+                </div>
             </div>
         </div>
     </div>

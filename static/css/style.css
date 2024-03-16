@@ -311,6 +311,10 @@ a {
 }
 
 /*** Footer ***/
+.copyright {
+    border-top: 1px solid rgba(256, 256, 256, .1);
+}
+
 /*
 .footer .btn.btn-social {
     margin-right: 5px;
@@ -445,6 +449,7 @@ a {
 }
 
 /*** Contact ***/
+/*
 @media (min-width: 992px) {
     .container.contact {
         max-width: 100% !important;
@@ -466,6 +471,7 @@ a {
         padding-left: calc(((100% - 1320px) / 2) + .75rem);
     }
 }
+*/
 
 /*** Testimonial ***/
 .testimonial-carousel::before {

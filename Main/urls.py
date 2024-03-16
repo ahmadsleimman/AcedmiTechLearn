@@ -1,6 +1,6 @@
 from django.urls import path, reverse_lazy
 from django.contrib.auth import views as auth_views
-from .views import Home, About, ContactUs, Service, NotFound, loginUser, registerUser, logout, verify_email
+from .views import Home, About, ContactUs, Service, NotFound, loginUser, registerUser, logout, verify_email, MyClasses
 
 urlpatterns = [
     path('', Home, name='Home'),
@@ -17,7 +17,7 @@ urlpatterns = [
 
     path('contact-us', ContactUs, name='Contact'),
 
-    # path('myclasses', MyClasses, name='MyClasses'),
+    path('myclasses', MyClasses, name='MyClasses'),
 
     path('404', NotFound, name='NotFound'),
 

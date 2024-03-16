@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
@@ -10,6 +11,10 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_bytes, force_str
 from .models import Student, Teacher, Inbox
+from Online.models import OnlineClass
+from Offline.models import OfflineClass
+from VIP.models import VIPClass
+
 
 # Create your views here.
 
@@ -35,8 +40,37 @@ def ContactUs(request):
         inbox.save()
     return render(request, 'contact-us.html')
 
+
+@login_required(login_url='Login')
+def MyClasses(request):
+    context = {}
+
+    if hasattr(request.user, 'student'):
+        student = Student.objects.get(user=request.user)
+        student_offline_classes = OfflineClass.objects.filter(students=student)
+        student_online_classes = OnlineClass.objects.filter(students=student)
+        student_vip_classes = VIPClass.objects.filter(student=student)
+
+        context.update({"offline_classes": student_offline_classes})
+        context.update({"online_classes": student_online_classes})
+        context.update({"vip_classes": student_vip_classes})
+
+    if hasattr(request.user, 'teacher'):
+        teacher = Teacher.objects.get(user=request.user)
+        teacher_offline_classes = OfflineClass.objects.filter(teacher=teacher)
+        teacher_online_classes = OnlineClass.objects.filter(teacher=teacher)
+        teacher_vip_classes = VIPClass.objects.filter(teacher=teacher)
+
+        context.update({"offline_classes": teacher_offline_classes})
+        context.update({"online_classes": teacher_online_classes})
+        context.update({"vip_classes": teacher_vip_classes})
+
+    return render(request, 'myclasses.html', context)
+
+
 def NotFound(request):
     return render(request, '404.html')
+
 
 def loginUser(request):
     error_message = None
@@ -131,6 +165,7 @@ def registerUser(request):
     return render(request, 'registerNew.html', {'error_message': error_message})
 
 
+@login_required(login_url='Login')
 def logout(request):
     auth.logout(request)
     return redirect('Home')

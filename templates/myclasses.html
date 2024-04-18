@@ -26,9 +26,10 @@
                 <thead>
                 <tr>
                     <th scope="col">Class</th>
+                    <th scope="col">Course</th>
+                    <th scope="col">Track</th>
                     <th scope="col">Language</th>
                     <th scope="col">Teacher</th>
-                    <th scope="col">Type</th>
                     <th scope="col">Zoom</th>
                     <th scope="col">Classroom</th>
                     <th scope="col">View</th>
@@ -36,41 +37,19 @@
                 </thead>
 
                 <tbody>
-                {% for offline in offline_classes %}
+                {% for class in classes %}
                 <tr>
-                    <td>{{offline.name}}</td>
-                    <td>{{offline.language}}</td>
-                    <td>{{offline.teacher.name}}</td>
-                    <td>Offline</td>
-                    <td>---</td>
-                    <td><a href="{{offline.classroom_link}}" target="_blank">Go Classroom</a></td>
-                    <td><a href="{% url 'OfflineDetails' id=offline.id %}"><i class="fa-solid fa-eye"></i></a></td>
+                    <td>{{class.name}}</td>
+                    <td>{{class.course.name}}</td>
+                    <td>{{class.course.track}}</td>
+                    <td>{{class.language}}</td>
+                    <td>{{class.teacher.name}}</td>
+                    <td><a href="{{class.zoom_link}}" target="_blank">Go Zoom</a></td>
+                    <td><a href="{{class.classroom_link}}" target="_blank">Go Classroom</a></td>
+                    <td><a href="{% url 'ClassDetails' id=class.id %}"><i class="fa-solid fa-eye"></i></a></td>
                 </tr>
                 {% endfor %}
 
-                {% for online in online_classes %}
-                <tr>
-                    <td>{{online.name}}</td>
-                    <td>{{online.language}}</td>
-                    <td>{{online.teacher.name}}</td>
-                    <td>Online</td>
-                    <td><a href="{{online.zoom_link}}" target="_blank">Go Zoom</a></td>
-                    <td><a href="{{online.classroom_link}}" target="_blank">Go Classroom</a></td>
-                    <td><a href="{% url 'OnlineDetails' id=online.id %}"><i class="fa-solid fa-eye"></i></a></td>
-                </tr>
-                {% endfor %}
-
-                {% for vip in vip_classes %}
-                <tr>
-                    <td>{{vip.name}}</td>
-                    <td>{{vip.vip_course.language}}</td>
-                    <td>{{vip.teacher.name}}</td>
-                    <td>VIP</td>
-                    <td><a href="{{vip.zoom_link}}" target="_blank">Go Zoom</a></td>
-                    <td><a href="{{vip.classroom_link}}" target="_blank">Go Classroom</a></td>
-                    <td><a href="{% url 'VIPClass' id=vip.id %}"><i class="fa-solid fa-eye"></i></a></td>
-                </tr>
-                {% endfor %}
                 </tbody>
             </table>
         </div>

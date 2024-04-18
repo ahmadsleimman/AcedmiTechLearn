@@ -11,7 +11,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_bytes, force_str
 from .models import Student, Teacher, Inbox
-from Offline.models import OfflineClass
+from Course.models import Class
 
 
 # Create your views here.
@@ -45,15 +45,15 @@ def MyClasses(request):
 
     if hasattr(request.user, 'student'):
         student = Student.objects.get(user=request.user)
-        student_offline_classes = OfflineClass.objects.filter(students=student)
+        student_classes = Class.objects.filter(students=student)
 
-        context.update({"offline_classes": student_offline_classes})
+        context.update({"classes": student_classes})
 
     if hasattr(request.user, 'teacher'):
         teacher = Teacher.objects.get(user=request.user)
-        teacher_offline_classes = OfflineClass.objects.filter(teacher=teacher)
+        teacher_classes = Class.objects.filter(teacher=teacher)
 
-        context.update({"offline_classes": teacher_offline_classes})
+        context.update({"classes": teacher_classes})
 
     return render(request, 'myclasses.html', context)
 

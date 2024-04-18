@@ -2,9 +2,8 @@
 const userId = JSON.parse(document.getElementById('user').textContent);
 const class_id = JSON.parse(document.getElementById('class_id').textContent);
 const class_name = JSON.parse(document.getElementById('class_name').textContent);
-const class_type = JSON.parse(document.getElementById('class_type').textContent);;
 
-const chatSocket = new WebSocket(`wss://${window.location.host}/ws/${class_type}/${class_id}/`);
+const chatSocket = new WebSocket(`wss://${window.location.host}/ws/${class_id}/`);
 
 chatSocket.onmessage = (e) => {
     const data = JSON.parse(e.data);
@@ -158,7 +157,7 @@ const displayImage = (data) => {
                 <div
                     <small class="mb-2 rounded-3 text-muted d-flex justify-content-end">@me</small>
                     <div class="mb-1">
-                        <a href="data:${imageType};base64,${image}" data-lightbox="${class_type.toUpperCase()}${class_id}">
+                        <a href="data:${imageType};base64,${image}" data-lightbox="CLASS${class_id}">
                             <img class="img-fluid" width="300px" src="data:${imageType};base64,${image}" alt="image">
                         </a>
                     </div>
@@ -171,7 +170,7 @@ const displayImage = (data) => {
                 <div>
                     <small class="mb-2 rounded-3 text-muted">@${data.name}</small>
                     <div class="mb-1">
-                        <a href="data:${imageType};base64,${image}" data-lightbox="${class_type.toUpperCase()}${class_id}">
+                        <a href="data:${imageType};base64,${image}" data-lightbox="CLASS${class_id}">
                             <img class="img-fluid" width="300px" src="data:${imageType};base64,${image} alt="image">
                         </a>
                     </div>
@@ -223,7 +222,7 @@ const handleStartRecord = () => {
                 chatSocket.send(JSON.stringify({
                     'message_type': 'voice',
                     'voice': base64String,
-                    'voice_name': `${class_type.toUpperCase()}${userId}${Date.now()}`,
+                    'voice_name': `CLASS${userId}${Date.now()}`,
                     'user': userId,
                 }));
 

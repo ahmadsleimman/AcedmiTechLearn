@@ -73,7 +73,7 @@ class ClassRequest(models.Model):
         return f"{self.id}"
 
 
-class CLassMessage(models.Model):
+class ClassMessage(models.Model):
     myclass = models.ForeignKey(Class, on_delete=models.CASCADE, verbose_name="Class")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     body = models.TextField(verbose_name='Body', null=True, blank=True)

@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import Student, Teacher, Inbox
+from Course.admin import ClassInline
 
-
-# from Course.admin import ClassInline
 
 # Register your models here.
 
@@ -27,8 +26,7 @@ class StudentAdmin(admin.ModelAdmin):
 class TeacherAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'username', 'created')
     search_fields = ('id', 'name')
-
-    # inlines = [OfflineClassInline]
+    inlines = [ClassInline]
 
     @admin.display(description="Email", ordering="user__email")
     def email(self, obj):
@@ -41,7 +39,7 @@ class TeacherAdmin(admin.ModelAdmin):
 
 @admin.register(Inbox)
 class InboxAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'subject', 'message', 'created', 'isFeedback')
+    list_display = ('id', 'name', 'email', 'subject', 'message', 'isFeedback', 'created')
     search_fields = ('id', 'name', 'subject', 'email')
     list_filter = ('isFeedback',)
     list_per_page = 20

@@ -6,7 +6,7 @@ from datetime import datetime
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 
-from Course.models import Class, CLassMessage
+from Course.models import Class, ClassMessage
 from django.contrib.auth.models import User
 
 
@@ -135,7 +135,7 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
     def save_message(self, user, body=None, voice=None, image=None):
         useraccount = User.objects.get(id=user)
         myclass = Class.objects.get(id=self.class_id)
-        CLassMessage.objects.create(user=useraccount, myclass=myclass, body=body, voice=voice, image=image)
+        ClassMessage.objects.create(user=useraccount, myclass=myclass, body=body, voice=voice, image=image)
 
     @sync_to_async
     def get_name(self, user):

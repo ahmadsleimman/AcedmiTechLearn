@@ -6,17 +6,14 @@ from datetime import datetime
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 
-from Offline.models import OfflineMessage, OfflineClass
-from Online.models import OnlineMessage, OnlineClass
-from VIP.models import VIPMessage, VIPClass
+from Course.models import Class, CLassMessage
 from django.contrib.auth.models import User
 
 
 class ChatRoomConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.class_type = self.scope['url_route']['kwargs']['class_type']
         self.class_id = self.scope['url_route']['kwargs']['class_id']
-        self.room_group_name = f"chat_{self.class_type}_{self.class_id}"
+        self.room_group_name = f"chat_{self.class_id}"
 
         await self.channel_layer.group_add(
             self.room_group_name, self.channel_name
@@ -137,17 +134,8 @@ class ChatRoomConsumer(AsyncWebsocketConsumer):
     @sync_to_async
     def save_message(self, user, body=None, voice=None, image=None):
         useraccount = User.objects.get(id=user)
-
-        if self.class_type == "offline":
-            offlineclass = OfflineClass.objects.get(id=self.class_id)
-            OfflineMessage.objects.create(user=useraccount, offlineclass=offlineclass, body=body, voice=voice,
-                                          image=image)
-        elif self.class_type == "online":
-            onlineclass = OnlineClass.objects.get(id=self.class_id)
-            OnlineMessage.objects.create(user=useraccount, onlineclass=onlineclass, body=body, voice=voice, image=image)
-        elif self.class_type == "vip":
-            vipclass = VIPClass.objects.get(id=self.class_id)
-            VIPMessage.objects.create(user=useraccount, vipclass=vipclass, body=body, voice=voice, image=image)
+        myclass = Class.objects.get(id=self.class_id)
+        CLassMessage.objects.create(user=useraccount, myclass=myclass, body=body, voice=voice, image=image)
 
     @sync_to_async
     def get_name(self, user):

@@ -39,9 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Main',
+    'Course',
     'Offline',
-    'Online',
-    'VIP',
+    'import_export',
 ]
 
 MIDDLEWARE = [

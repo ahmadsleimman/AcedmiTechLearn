@@ -11,9 +11,7 @@ from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.contrib.auth import get_user_model
 from django.utils.encoding import force_bytes, force_str
 from .models import Student, Teacher, Inbox
-from Online.models import OnlineClass
 from Offline.models import OfflineClass
-from VIP.models import VIPClass
 
 
 # Create your views here.
@@ -48,22 +46,14 @@ def MyClasses(request):
     if hasattr(request.user, 'student'):
         student = Student.objects.get(user=request.user)
         student_offline_classes = OfflineClass.objects.filter(students=student)
-        student_online_classes = OnlineClass.objects.filter(students=student)
-        student_vip_classes = VIPClass.objects.filter(student=student)
 
         context.update({"offline_classes": student_offline_classes})
-        context.update({"online_classes": student_online_classes})
-        context.update({"vip_classes": student_vip_classes})
 
     if hasattr(request.user, 'teacher'):
         teacher = Teacher.objects.get(user=request.user)
         teacher_offline_classes = OfflineClass.objects.filter(teacher=teacher)
-        teacher_online_classes = OnlineClass.objects.filter(teacher=teacher)
-        teacher_vip_classes = VIPClass.objects.filter(teacher=teacher)
 
         context.update({"offline_classes": teacher_offline_classes})
-        context.update({"online_classes": teacher_online_classes})
-        context.update({"vip_classes": teacher_vip_classes})
 
     return render(request, 'myclasses.html', context)
 
@@ -110,9 +100,7 @@ def registerUser(request):
 
     if request.method == "POST":
         name = request.POST['fullname']
-        major = request.POST['major']
-        language = request.POST['language']
-        year = request.POST['year']
+        track = request.POST['track']
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
@@ -122,12 +110,8 @@ def registerUser(request):
             error_message = "Password And Confirm Password Should Be The Same"
             return render(request, 'register.html', {'error_message': error_message})
 
-        if year == '1':
-            error_message = "Select A Specific Year"
-            return render(request, 'register.html', {'error_message': error_message})
-
-        if major == '1':
-            error_message = "Select A Specific Major"
+        if track == '1':
+            error_message = "Select A Specific Track"
             return render(request, 'register.html', {'error_message': error_message})
 
         try:
@@ -145,8 +129,7 @@ def registerUser(request):
                 new_user.is_active = False
                 new_user.save()
 
-                new_student = Student.objects.create(name=name, major=major, language=language, year=year,
-                                                     user=new_user)
+                new_student = Student.objects.create(name=name, track=track, user=new_user)
                 new_student.save()
 
                 current_site = get_current_site(request)

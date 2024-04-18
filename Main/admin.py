@@ -1,59 +1,47 @@
 from django.contrib import admin
-from .models import Student, Course, Teacher, Inbox
-from Online.admin import OnlineClassInline
-from Offline.admin import OfflineClassInline
-from VIP.admin import VIPClassInline
+from .models import Student, Teacher, Inbox
+
+
+# from Course.admin import ClassInline
 
 # Register your models here.
 
+
+@admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'username', 'major', 'language', 'year')
+    list_display = ('id', 'name', 'email', 'username', 'track', 'created')
     search_fields = ('id', 'name')
-    list_filter = ('major', 'language', 'year')
-    list_per_page = 20
+    list_filter = ('track',)
+    list_per_page = 30
 
+    @admin.display(description="Email", ordering="user__email")
     def email(self, obj):
         return obj.user.email
 
-    email.short_description = 'email'
-
+    @admin.display(description="Username", ordering="user__username")
     def username(self, obj):
         return obj.user.username
 
-    username.short_description = 'username'
 
-
+@admin.register(Teacher)
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'email', 'username')
+    list_display = ('id', 'name', 'email', 'username', 'created')
     search_fields = ('id', 'name')
-    inlines = [OfflineClassInline, OnlineClassInline, VIPClassInline]
 
+    # inlines = [OfflineClassInline]
+
+    @admin.display(description="Email", ordering="user__email")
     def email(self, obj):
         return obj.user.email
 
-    email.short_description = 'email'
-
+    @admin.display(description="Username", ordering="user__username")
     def username(self, obj):
         return obj.user.username
 
-    username.short_description = 'username'
 
-
-class CourseAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'major', 'year', 'semester')
-    search_fields = ('id', 'name')
-    list_filter = ('major', 'year', 'semester')
-    list_per_page = 20
-
-
+@admin.register(Inbox)
 class InboxAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'email', 'subject', 'message', 'created', 'isFeedback')
-    search_fields = ('id', 'name', 'subject')
+    search_fields = ('id', 'name', 'subject', 'email')
     list_filter = ('isFeedback',)
     list_per_page = 20
-
-
-admin.site.register(Student, StudentAdmin)
-admin.site.register(Teacher, TeacherAdmin)
-admin.site.register(Course, CourseAdmin)
-admin.site.register(Inbox, InboxAdmin)

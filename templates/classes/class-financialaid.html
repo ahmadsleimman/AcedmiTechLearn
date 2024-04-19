@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header py-5">
+    <div class="container">
+        <h1 class="display-3 text-white mb-3 animated slideInDown">Financial Aid</h1>
+        <nav class="breadcrumb animated slideInDown">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-white" href="{% url 'Home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a class="text-white" href="{% url 'Classes' %}">Classes</a></li>
+                <li class="breadcrumb-item">
+                    <a class="text-white" href="{% url 'ClassDetails' id=class.id %}">{{class.name}}</a>
+                </li>
+                <li class="breadcrumb-item text-white" aria-current="page">Financial Aid</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+<!-- Page Header End -->
+
+
+{% endblock content %}

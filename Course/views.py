@@ -70,3 +70,23 @@ def ClassEnroll(request, id):
         classrequest = ClassRequest.objects.create(student=studentID, myclass=myclass)
         classrequest.save()
     return redirect("ClassDetails", id=id)
+
+
+@login_required(login_url='Login')
+def ClassFinancialAid(request, id):
+    try:
+        myclass = Class.objects.get(id=id)
+    except:
+        return redirect("NotFound")
+
+    context = {
+        "class": myclass
+    }
+
+    if request.method == "POST" and hasattr(request.user, 'student'):
+        studentID = Student.objects.get(user=request.user)
+        message = request.POST['message']
+        ClassFinancialAid.objects.create(student=studentID, myclass=myclass, message=message)
+        return redirect("ClassDetails", id=id)
+
+    return render(request, 'classes/class-financialaid.html', context)

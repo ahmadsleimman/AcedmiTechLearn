@@ -24,7 +24,7 @@ urlpatterns = [
     path('verify-email/<str:uidb64>/<str:token>/', verify_email, name='verify_email'),
 
     path('password_reset/', auth_views.PasswordResetView.as_view(
-        email_template_name='emails/reset_password_email.html',
+        email_template_name='email/reset_password_email.html',
     ), name='password_reset'),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(

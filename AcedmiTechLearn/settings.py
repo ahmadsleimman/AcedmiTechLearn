@@ -75,11 +75,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'AcedmiTechLearn.wsgi.application'
 ASGI_APPLICATION = 'AcedmiTechLearn.asgi.application'
 
-# CHANNEL_LAYERS = {
-#     'default': {
-#         'BACKEND': 'channels.layers.InMemoryChannelLayer'
-#     },
-# }
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases

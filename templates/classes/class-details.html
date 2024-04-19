@@ -173,8 +173,14 @@
                 {% if isRequested %}
                 <button class="btn text-uppercase btn-primary w-100 disabled" disabled>Request Sent</button>
                 {% elif not isEnrolled %}
-                <a href="{% url 'ClassEnroll' id=class.id %}" class="btn text-uppercase btn-primary w-100">
+                <a href="{% url 'ClassEnroll' id=class.id %}" class="btn text-uppercase btn-primary w-100 mb-3">
                     Enroll The Class</a>
+                <p class="text-center">
+                    <a href="{% url 'ClassFinancialAid' id=class.id %}" class="text-muted">
+                        Or you can request a Financial Aid
+                    </a>
+                </p>
+
                 {% endif %}
                 {% endif %}
             </div>

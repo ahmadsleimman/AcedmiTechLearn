@@ -3,7 +3,7 @@ const userId = JSON.parse(document.getElementById('user').textContent);
 const class_id = JSON.parse(document.getElementById('class_id').textContent);
 const class_name = JSON.parse(document.getElementById('class_name').textContent);
 
-const chatSocket = new WebSocket(`wss://${window.location.host}/ws/${class_id}/`);
+const chatSocket = new WebSocket(`ws://${window.location.host}/ws/${class_id}/`);
 
 chatSocket.onmessage = (e) => {
     const data = JSON.parse(e.data);

@@ -137,7 +137,7 @@ def registerUser(request):
                 verification_url = reverse('verify_email', args=[uid, token])
                 verification_link = f'http://{current_site.domain}{verification_url}'
                 subject = "Verify Your Account"
-                message = render_to_string('emails/verification_email.html', {
+                message = render_to_string('email/verification_email.html', {
                     'student': new_student,
                     'verification_link': verification_link,
                 })

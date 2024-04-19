@@ -34,8 +34,7 @@ def ContactUs(request):
         email = request.POST['email']
         subject = request.POST['subject']
         message = request.POST['message']
-        inbox = Inbox.objects.create(name=name, email=email, subject=subject, message=message)
-        inbox.save()
+        Inbox.objects.create(name=name, email=email, subject=subject, message=message)
     return render(request, 'contact-us.html')
 
 

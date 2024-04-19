@@ -3,6 +3,8 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from .models import Course, Class, ClassRequest, ClassMessage, ClassFinancialAid
 from Main.models import Student
+from import_export.admin import ImportExportModelAdmin
+from .resource import CourseResource, ClassResource
 
 
 # Register your models here.
@@ -21,20 +23,31 @@ class ClassInline(admin.TabularInline):
 
 
 @admin.register(Course)
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(ImportExportModelAdmin):
     list_display = ('id', 'name', 'track', 'created')
     search_fields = ('id', 'name')
     list_filter = ('track',)
     list_per_page = 20
+    resource_class = CourseResource
+
+    def has_import_permission(self, request):
+        # Only superusers have export permission
+        return request.user.is_superuser
+
+    def has_export_permission(self, request):
+        # Only superusers have export permission
+        return request.user.is_superuser
 
 
 @admin.register(Class)
-class ClassAdmin(admin.ModelAdmin):
+class ClassAdmin(ImportExportModelAdmin):
     list_display = ('id', 'name', 'teacher_name', 'course_name', 'course_track', 'language', 'price', 'created')
     search_fields = ('id', 'name', 'teacher__name', 'course__name')
     filter_horizontal = ('students',)
-    list_filter = ('course__track', 'language')
+    list_filter = ('course__track', 'course__name', 'language')
     list_per_page = 30
+    actions = ['sendNewClassEmail', 'deleteAllMessage']
+    resource_class = ClassResource
 
     @admin.display(description="Teacher", ordering="teacher__name")
     def teacher_name(self, obj):
@@ -74,7 +87,12 @@ class ClassAdmin(admin.ModelAdmin):
 
     deleteAllMessage.short_description = 'Delete All Messages'
 
-    actions = [sendNewClassEmail, deleteAllMessage]
+    def has_import_permission(self, request):
+        return False
+
+    def has_export_permission(self, request):
+        # Only superusers have export permission
+        return request.user.is_superuser
 
 
 @admin.register(ClassRequest)

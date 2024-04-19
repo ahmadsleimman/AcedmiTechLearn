@@ -85,10 +85,10 @@ def loginUser(request):
                     return redirect('Home')
                 except:
                     error_message = "Account Not Found"
-                    return render(request, 'login.html', {'error_message': error_message})
+                    return render(request, 'loginNew.html', {'error_message': error_message})
         else:
             error_message = "Invalid Credentials"
-            return render(request, 'login.html', {'error_message': error_message})
+            return render(request, 'loginNew.html', {'error_message': error_message})
     return render(request, 'loginNew.html', {'error_message': error_message})
 
 
@@ -108,21 +108,21 @@ def registerUser(request):
 
         if password != confirmpassword:
             error_message = "Password And Confirm Password Should Be The Same"
-            return render(request, 'register.html', {'error_message': error_message})
+            return render(request, 'registerNew.html', {'error_message': error_message})
 
         if track == '1':
             error_message = "Select A Specific Track"
-            return render(request, 'register.html', {'error_message': error_message})
+            return render(request, 'registerNew.html', {'error_message': error_message})
 
         try:
             user = User.objects.get(username=username)
             error_message = "Username already exists!!"
-            return render(request, 'register.html', {'error_message': error_message})
+            return render(request, 'registerNew.html', {'error_message': error_message})
         except:
             try:
                 user = User.objects.get(email=email)
                 error_message = "Email already exists!!"
-                return render(request, 'register.html', {'error_message': error_message})
+                return render(request, 'registerNew.html', {'error_message': error_message})
             except:
                 new_user = User.objects.create(username=username, email=email)
                 new_user.set_password(password)

@@ -160,12 +160,8 @@ JAZZMIN_SETTINGS = {
     "site_header": "AcedmiTechLearn",
     "site_brand": "AcedmiTechLearn",
     "welcome_sign": "Welcome to the Admin Panel",
-    # "copyright": "Wizo Team",
-    "order_with_respect_to": ["Main.Student", "Main.Teacher", "Main.Course", "Main.Inbox", "Online.OnlineClass",
-                              "Online.OnlineRequest", "Online.OnlineMessage", "Online.OnlineFinancialAid",
-                              "Offline.OfflineClass", "Offline.OfflineRequest", "Offline.OfflineMessage",
-                              "Offline.OfflineFinancialAid", "VIP.VIPCourse", "VIP.VIPClass",
-                              "VIP.VIPRequest", "VIP.VIPMessage"],
+    "order_with_respect_to": ["Main.Student", "Main.Teacher", "Main.Inbox", "Course.Course", "Course.Class",
+                              "Course.ClassRequest", "Course.ClassMessage", "Course.ClassFinancialAid"],
     "icons": {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
@@ -173,20 +169,12 @@ JAZZMIN_SETTINGS = {
 
         "Main.Student": "fa fa-user",
         "Main.Teacher": "fa fa-graduation-cap",
-        "Main.Course": "fa fa-book",
         "Main.Inbox": "fa fa-inbox",
 
-        "Online.OnlineClass": "fa fa-book",
-        "Online.OnlineRequest": "fa fa-inbox",
-        "Online.OnlineMessage": "fa fa-comments",
-
-        "Offline.OfflineClass": "fa fa-book",
-        "Offline.OfflineRequest": "fa fa-inbox",
-        "Offline.OfflineMessage": "fa fa-comments",
-
-        "VIP.VIPCourse": "fa fa-book",
-        "VIP.VIPClass": "fa fa-book",
-        "VIP.VIPRequest": "fa fa-inbox",
-        "VIP.VIPMessage": "fa fa-comments",
+        "Course.Course": "fa fa-book",
+        "Course.Class": "fa fa-book",
+        "Course.ClassRequest": "fa fa-inbox",
+        "Course.ClassMessage": "fa fa-comments",
+        "Course.ClassFinancialAid": "fa fa-inbox",
     },
 }

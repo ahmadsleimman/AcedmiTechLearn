@@ -24,9 +24,9 @@
         <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.3s" style="max-width: 600px;">
             <h2>Interactive Classes with Google Classroom Integration</h2>
             <div class="mt-3 wow fadeInUp" data-wow-delay="0.4s">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-4">
-                        <label for="track">Major:</label>
+                        <label class="form-label" for="track">Choose a Track:</label>
                         <select name="track" class="form-select shadow-none" id="track">
                             <option value="All">All</option>
                             <option value="Web Development">Web Development</option>
@@ -38,7 +38,7 @@
                         </select>
                     </div>
                     <div class="col-4">
-                        <label class="language">Language:</label>
+                        <label class="form-label" for="language">Language:</label>
                         <select name="language" class="form-select shadow-none" id="language">
                             <option value="All">All</option>
                             <option value="Frensh">Frensh</option>
@@ -50,7 +50,7 @@
         </div>
         <div class="row g-5 grid">
             {% for classe in classes %}
-            <div class="col-md-6 col-lg-4 wow fadeInUp item" data-track="{{class.course.track}}"
+            <div class="col-md-6 col-lg-4 wow fadeInUp item" data-track="{{classe.course.track}}"
                  data-language="{{classe.language}}" data-wow-delay="0.5s">
                 <div class="card">
                     <div class="card-body text-center">

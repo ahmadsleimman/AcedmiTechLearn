@@ -6,6 +6,9 @@
     <div class="container">
         <div class="row flex-column-reverse flex-md-row d-flex justify-content-center align-items-center">
             <div class="col-12 col-md-6 col-lg-5">
+                {% if error_message %}
+                <div class="alert alert-danger mb-3">{{error_message}}</div>
+                {% endif %}
                 <h2 class="text-center fw-bold" style="color: #263238; letter-spacing: 4px">REGISTER</h2>
                 <div class="card-body p-4">
                     <form method="POST" action="/register">
@@ -54,7 +57,7 @@
                             </div>
                         </div>
 
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-4">
                             <span class="input-group-text">
                                 <i class="fa-solid fa-lock fa-xl" style="color: #0d6efd"></i>
                             </span>
@@ -67,19 +70,17 @@
                         </div>
 
 
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                                <div class="form-group">
-                                    <select class="form-select" id="track" name="track" required>
-                                        <option value="1">Choose a Major</option>
-                                        <option value="Web Development">Web Development</option>
-                                        <option value="Mobile Application">Mobile Application</option>
-                                        <option value="AI">AI</option>
-                                        <option value="Game Development">Game Development</option>
-                                        <option value="Desktop Application">Desktop Application</option>
-                                        <option value="Cyber Security">Cyber Security</option>
-                                    </select>
-                                </div>
+                        <div class="mb-4">
+                            <div class="form-group">
+                                <select class="form-select" id="track" name="track" required>
+                                    <option value="1">Choose a Track</option>
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Mobile Application">Mobile Application</option>
+                                    <option value="AI">AI</option>
+                                    <option value="Game Development">Game Development</option>
+                                    <option value="Desktop Application">Desktop Application</option>
+                                    <option value="Cyber Security">Cyber Security</option>
+                                </select>
                             </div>
                         </div>
 
@@ -97,9 +98,6 @@
                         </div>
                     </form>
                 </div>
-                {% if error_message %}
-                <div class="alert alert-danger mb-3">{{error_message}}</div>
-                {% endif %}
             </div>
             <div class="col-12 col-md-6 col-lg-7">
                 <img src="{%static 'img/signup.jpg' %}" alt="register" class="img-fluid w-100 h-100"/>

@@ -9,6 +9,9 @@
                 <img src="{%static 'img/signin.jpg' %}" alt="login" class="img-fluid h-100 w-100"/>
             </div>
             <div class="col-12 col-md-6 col-lg-5">
+                {% if error_message %}
+                <div class="alert alert-danger mb-3">{{error_message}}</div>
+                {% endif %}
                 <h2 class="text-center fw-bold" style="color: #263238; letter-spacing: 4px">WELCOME</h2>
                 <div class="card-body p-4 p-lg-5">
                     <form method="POST" action="/login">
@@ -52,9 +55,6 @@
                         </div>
                     </form>
                 </div>
-                {% if error_message %}
-                <div class="alert alert-danger mb-3">{{error_message}}</div>
-                {% endif %}
             </div>
         </div>
     </div>

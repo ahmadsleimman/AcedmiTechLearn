@@ -27,7 +27,6 @@
     <link href="{%static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
     <link href="{%static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
     <!-- Customized Bootstrap Stylesheet -->
-    <!--    <link href="{%static 'css/bootstrap.min.css' %}" rel="stylesheet">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
           integrity="sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -64,13 +63,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'Service' %}">Service</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Classes</a>
-                        <div class="dropdown-menu bg-light m-0">
-                            <a href="{% url 'Online' %}" class="dropdown-item">Online</a>
-                            <a href="{% url 'Offline' %}" class="dropdown-item">Offline</a>
-                            <a href="{% url 'VIP' %}" class="dropdown-item">VIP</a>
-                        </div>
+                    <li class="nav-item">
+                        <a href="{% url 'Classes' %}" class="nav-link">Classes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'Contact' %}">Contact Us</a>
@@ -78,6 +72,7 @@
                 </ul>
             </div>
         </div>
+        {% if request.user.is_authenticated %}
         <div class="dropdown">
             <button class="btn dropdown-toggle border-0 hidden-arrow" type="button" data-bs-toggle="dropdown"
                     data-bs-auto-close="true" aria-expanded="false">
@@ -87,8 +82,6 @@
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end">
-
-                {% if request.user.is_authenticated %}
                 <li class='dropdown-item'>
                     <a class="nav-link" href="{% url 'MyClasses' %}">My Classes</a>
                 </li>
@@ -98,18 +91,14 @@
                 <li class='dropdown-item'>
                     <a class="nav-link" href="{% url 'Logout' %}">Logout</a>
                 </li>
-                {% endif %}
-
-                {% if not request.user.is_authenticated %}
-                <li class="dropdown-item">
-                    <a class="nav-link" href="{% url 'Register' %}">Register</a>
-                </li>
-                <li class="dropdown-item">
-                    <a class="nav-link" href="{% url 'Login' %}">Login</a>
-                </li>
-                {% endif %}
             </ul>
         </div>
+        {% else %}
+        <div>
+            <a class="btn btn-primary" href="{% url 'Register' %}">Register</a>
+            <a class="btn btn-secondary" href="{% url 'Login' %}">Login</a>
+        </div>
+        {% endif %}
     </div>
 
 </nav>
@@ -127,7 +116,7 @@
 <div class="container-fluid bg-dark text-light mt-5 pt-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h3 class="text-white mb-4">Quick Links</h3>
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-light mb-2" href="{% url 'Home' %}">
@@ -139,23 +128,14 @@
                     <a class="text-light mb-2" href="{% url 'Service' %}">
                         <i class="fa-solid fa-arrow-right text-primary me-2"></i>Our Services
                     </a>
+                    <a class="text-light mb-2" href="{% url 'Classes' %}">
+                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Our Classes</a>
                     <a class="text-light" href="{% url 'Contact' %}">
                         <i class="fa-solid fa-arrow-right text-primary me-2"></i>Contact Us
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h3 class="text-white mb-4">Popular Links</h3>
-                <div class="d-flex flex-column justify-content-start">
-                    <a class="text-light mb-2" href="{% url 'Online' %}">
-                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Online Classes</a>
-                    <a class="text-light mb-2" href="{% url 'Offline' %}">
-                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>Offline Classes</a>
-                    <a class="text-light mb-2" href="{% url 'VIP' %}">
-                        <i class="fa-solid fa-arrow-right text-primary me-2"></i>VIP Classes</a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h3 class="text-white mb-4">Get In Touch</h3>
                 <p class="mb-2">
                     <i class="fa-solid fa-location-dot text-primary me-2"></i>123 Street, New York, USA
@@ -171,7 +151,7 @@
                     </a>
                 </p>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-4 col-md-6">
                 <h3 class="text-white mb-4">Follow Us</h3>
                 <div class="d-flex">
                     <a class="btn btn-lg btn-primary btn-lg-square rounded me-2" href="#">

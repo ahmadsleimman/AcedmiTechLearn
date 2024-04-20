@@ -1,7 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
+from allauth.account.signals import user_logged_in
+
 
 # Create your models here.
+
+def addStudent(request, user, **kwargs):
+    try:
+        student = Student.objects.get(user=user)
+    except:
+        Student.objects.create(user=user, name=user)
+
+
+user_logged_in.connect(receiver=addStudent, sender=User)
 
 TRACK = (
     ('Web Development', 'Web Development'),
@@ -10,13 +21,14 @@ TRACK = (
     ('Game Development', 'Game Development'),
     ('Desktop Application', 'Desktop Application'),
     ('Cyber Security', 'Cyber Security'),
+    ('None', 'None'),
 )
 
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="User")
     name = models.CharField(max_length=40, verbose_name='Student Name')
-    track = models.CharField(choices=TRACK, max_length=20, verbose_name='Track')
+    track = models.CharField(choices=TRACK, max_length=20, verbose_name='Track', default="None")
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 

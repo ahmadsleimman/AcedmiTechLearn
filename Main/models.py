@@ -1,18 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
-from allauth.account.signals import user_logged_in
-
 
 # Create your models here.
 
-def addStudent(request, user, **kwargs):
-    try:
-        student = Student.objects.get(user=user)
-    except:
-        Student.objects.create(user=user, name=user)
-
-
-user_logged_in.connect(receiver=addStudent, sender=User)
 
 TRACK = (
     ('Web Development', 'Web Development'),

@@ -73,7 +73,7 @@ def ClassEnroll(request, id):
 
 
 @login_required(login_url='Login')
-def ClassFinancialAid(request, id):
+def ClassFinancialAidEnroll(request, id):
     try:
         myclass = Class.objects.get(id=id)
     except:

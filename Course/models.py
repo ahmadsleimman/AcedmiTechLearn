@@ -13,7 +13,7 @@ TRACK = (
 )
 
 LANGUAGE = (
-    ('Frensh', 'Frensh'),
+    ('French', 'French'),
     ('English', 'English'),
 )
 

@@ -122,15 +122,15 @@ class ClassRequestAdmin(admin.ModelAdmin):
         for obj in queryset:
             if obj.student not in obj.myclass.students.all():
                 obj.myclass.students.add(obj.student)
-                # email = obj.student.user.email
-                # subject = "Congratulations! You've Been Accepted into the " + obj.myclass.name
-                # message = render_to_string('email/accept_request_email.html', {
-                #     'student': obj.student.name,
-                #     'className': obj.myclass.name,
-                #     'courseName': obj.myclass.course.name,
-                # })
-                # email = EmailMessage(subject=subject, body=message, to=[email])
-                # email.send()
+                email = obj.student.user.email
+                subject = "Congratulations! You've Been Accepted into the " + obj.myclass.name
+                message = render_to_string('email/accept_request_email.html', {
+                    'student': obj.student.name,
+                    'className': obj.myclass.name,
+                    'courseName': obj.myclass.course.name,
+                })
+                email = EmailMessage(subject=subject, body=message, to=[email])
+                email.send()
             obj.delete()
 
     acceptStudent.short_description = 'Accept Student'

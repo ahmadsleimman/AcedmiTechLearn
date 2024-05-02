@@ -42,6 +42,7 @@ class Class(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, verbose_name="Course")
     language = models.CharField(choices=LANGUAGE, max_length=10, verbose_name='Language')
     price = models.FloatField(verbose_name='Price')
+    img_class = models.ImageField(verbose_name="Image", upload_to="photo/")
     classroom_link = models.CharField(max_length=255, verbose_name='Classroom Link')
     zoom_link = models.CharField(max_length=255, verbose_name='Zoom Link')
     created = models.DateTimeField(auto_now_add=True)

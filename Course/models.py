@@ -83,7 +83,7 @@ class ClassMessage(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ['-created']
+        ordering = ['created']
         verbose_name = "Class Message"
         verbose_name_plural = "Class Messages"
         db_table = 'Class_Message'

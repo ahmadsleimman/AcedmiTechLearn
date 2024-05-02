@@ -68,7 +68,6 @@ def ClassEnroll(request, id):
     if hasattr(request.user, 'student'):
         studentID = Student.objects.get(user=request.user)
         classrequest = ClassRequest.objects.create(student=studentID, myclass=myclass)
-        classrequest.save()
     return redirect("ClassDetails", id=id)
 
 

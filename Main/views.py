@@ -166,3 +166,8 @@ def verify_email(request, uidb64, token):
             return redirect('NotFound')
     except User.DoesNotExist:
         return redirect('NotFound')
+
+
+@login_required(login_url='Login')
+def CompleteAccount(request):
+    return render(request, "complete-account.html")

@@ -32,6 +32,8 @@ def ClassDetails(request, id):
 
     if hasattr(request.user, 'student'):
         isEnrolled = None
+        isFinancial = None
+
         student = Student.objects.get(user=request.user)
 
         if student in myclass.students.all():
@@ -43,8 +45,15 @@ def ClassDetails(request, id):
         except:
             isRequested = False
 
+        try:
+            classfinancial = ClassFinancialAid.objects.get(student=student, myclass=myclass)
+            isFinancial = True
+        except:
+            isFinancial = False
+
         context.update({"isEnrolled": isEnrolled})
         context.update({"isRequested": isRequested})
+        context.update({"isFinancial": isFinancial})
 
     if hasattr(request.user, 'teacher'):
         isAdmin = None

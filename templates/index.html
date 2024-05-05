@@ -82,11 +82,13 @@
             </button>
 
             <ul class="dropdown-menu dropdown-menu-end">
+                {% if request.user.student %}
+                <li class='dropdown-item'>
+                    <a class="nav-link" href="{% url 'Profile' %}">My Profile</a>
+                </li>
+                {% endif %}
                 <li class='dropdown-item'>
                     <a class="nav-link" href="{% url 'MyClasses' %}">My Classes</a>
-                </li>
-                <li class='dropdown-item'>
-                    <a class="nav-link" href="{% url 'MyClasses' %}">My Profile</a>
                 </li>
                 <li class='dropdown-item'>
                     <a class="nav-link" href="{% url 'Logout' %}">Logout</a>

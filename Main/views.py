@@ -13,8 +13,17 @@ from django.utils.encoding import force_bytes, force_str
 from .models import Student, Teacher, Inbox
 from Course.models import Class
 
-
 # Create your views here.
+
+TRACK = (
+    ('Web Development', 'Web Development'),
+    ('Mobile Application', 'Mobile Application'),
+    ('AI', 'AI'),
+    ('Game Development', 'Game Development'),
+    ('Desktop Application', 'Desktop Application'),
+    ('Cyber Security', 'Cyber Security'),
+)
+
 
 def Home(request):
     return render(request, 'home.html')
@@ -171,3 +180,20 @@ def verify_email(request, uidb64, token):
 @login_required(login_url='Login')
 def CompleteAccount(request):
     return render(request, "complete-account.html")
+
+
+@login_required(login_url='Login')
+def Profile(request):
+    student = Student.objects.get(user=request.user)
+    context = {
+        "student": student,
+        "Track": TRACK
+    }
+    if request.method == "POST":
+        name = request.POST['name']
+        track = request.POST['track']
+        student.name = name
+        student.track = track
+        student.save()
+
+    return render(request, "profile.html", context)

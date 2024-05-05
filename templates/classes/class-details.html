@@ -172,13 +172,17 @@
                 {% if request.user.is_authenticated and not isAdmin %}
                 {% if isRequested %}
                 <button class="btn text-uppercase btn-primary w-100 disabled" disabled>Request Sent</button>
-                {% elif not isEnrolled %}
+                {% elif not isEnrolled and not isFinancial %}
                 <a href="{% url 'ClassEnroll' id=class.id %}" class="btn text-uppercase btn-primary w-100 mb-3">
                     Enroll The Class</a>
                 <p class="text-center">
                     <a href="{% url 'ClassFinancialAid' id=class.id %}" class="text-muted">
                         Or you can request a Financial Aid
                     </a>
+                </p>
+                {% elif isFinancial %}
+                <p class="text-center">
+                    Financial request sent
                 </p>
                 {% endif %}
                 {% endif %}

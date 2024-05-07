@@ -26,7 +26,13 @@ TRACK = (
 
 
 def Home(request):
-    return render(request, 'home.html')
+    if request.user.is_authenticated and hasattr(request.user, 'student'):
+        student = Student.objects.get(user=request.user)
+        classes = Class.objects.filter(course__track=student.track)[:5]
+    else:
+        classes = Class.objects.all()[:6]
+
+    return render(request, 'home.html', {"classes": classes})
 
 
 def About(request):

@@ -138,7 +138,6 @@ def registerUser(request):
                 new_user.save()
 
                 new_student = Student.objects.create(name=name, track=track, user=new_user)
-                new_student.save()
 
                 current_site = get_current_site(request)
                 uid = urlsafe_base64_encode(force_bytes(new_student.user.pk))
@@ -179,6 +178,14 @@ def verify_email(request, uidb64, token):
 
 @login_required(login_url='Login')
 def CompleteAccount(request):
+    student = Student.objects.get(user=request.user)
+    if student.track != 'None':
+        return redirect('Home')
+    if request.method == "POST":
+        track = request.POST['track']
+        student.track = track
+        student.save()
+        return redirect('Profile')
     return render(request, "complete-account.html")
 
 

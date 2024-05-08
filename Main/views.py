@@ -31,8 +31,12 @@ def Home(request):
         classes = Class.objects.filter(course__track=student.track)[:5]
     else:
         classes = Class.objects.all()[:6]
-
-    return render(request, 'home.html', {"classes": classes})
+    feedbacks = Inbox.objects.filter(isFeedback=True)
+    context = {
+        "classes": classes,
+        "feedbacks": feedbacks
+    }
+    return render(request, 'home.html', context)
 
 
 def About(request):

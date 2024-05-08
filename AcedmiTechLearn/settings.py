@@ -51,7 +51,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-
+SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_PROVIDER = {
     "google": {
         "SCOPE": ["email", "profile"],
@@ -171,7 +171,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-APPEND_SLASH=False
+APPEND_SLASH = False
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'

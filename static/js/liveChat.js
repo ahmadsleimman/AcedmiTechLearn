@@ -154,7 +154,7 @@ const displayImage = (data) => {
     if (userId == data.user) {
         html = `
             <div class="d-flex flex-row justify-content-end my-2">
-                <div
+                <div>
                     <small class="mb-2 rounded-3 text-muted d-flex justify-content-end">@me</small>
                     <div class="mb-1">
                         <a href="data:${imageType};base64,${image}" data-lightbox="CLASS${class_id}">

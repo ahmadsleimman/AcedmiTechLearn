@@ -24,7 +24,7 @@ urlpatterns = [
 
     path('404', NotFound, name='NotFound'),
 
-    path('complete-account', CompleteAccount, name='CompleteAccount'),
+    path('complete-account/', CompleteAccount, name='CompleteAccount'),
 
     path('verify-email/<str:uidb64>/<str:token>/', verify_email, name='verify_email'),
 

@@ -52,7 +52,7 @@
 
 
     // Offline Carousel
-    $('.offline-carousel').owlCarousel({
+    $('.class-carousel').owlCarousel({
     center: false,
     smartSpeed: 1000,
     items: 1,

@@ -112,11 +112,11 @@ CHANNEL_LAYERS = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'academydb',
-        'USER': 'admin',
-        'PASSWORD': 'juoVwzQT',
-        'HOST': 'mysql-171645-0.cloudclusters.net',
-        'PORT': '18437',
+        'NAME': 'djangoecom',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 

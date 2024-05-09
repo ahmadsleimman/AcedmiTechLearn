@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'admincharts',
     'jazzmin',
     'daphne',
     'django.contrib.admin',

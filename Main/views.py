@@ -123,6 +123,14 @@ def registerUser(request):
         email = request.POST['email']
         password = request.POST['password']
         confirmpassword = request.POST['confirmpassword']
+        names = name.split(' ', 1)
+
+        if len(names) > 1:
+            first_name = names[0]
+            last_name = names[1]
+        else:
+            first_name = name
+            last_name = ''
 
         if password != confirmpassword:
             error_message = "Password And Confirm Password Should Be The Same"
@@ -142,7 +150,8 @@ def registerUser(request):
                 error_message = "Email already exists!!"
                 return render(request, 'registerNew.html', {'error_message': error_message})
             except:
-                new_user = User.objects.create(username=username, email=email)
+                new_user = User.objects.create(username=username, email=email, first_name=first_name,
+                                               last_name=last_name)
                 new_user.set_password(password)
                 new_user.is_active = False
                 new_user.save()
@@ -156,12 +165,12 @@ def registerUser(request):
                 verification_link = f'http://{current_site.domain}{verification_url}'
                 subject = "Verify Your Account"
                 message = render_to_string('email/verification_email.html', {
-                    'student': new_student,
+                    'student': new_student.name,
                     'verification_link': verification_link,
                 })
                 email = EmailMessage(subject=subject, body=message, to=[new_student.user.email])
                 email.send()
-                return render(request, 'verification_message.html')
+                return redirect('verify_message')
     return render(request, 'registerNew.html', {'error_message': error_message})
 
 
@@ -214,3 +223,7 @@ def Profile(request):
         student.save()
 
     return render(request, "profile.html", context)
+
+
+def verify_message(request):
+    return render(request, 'verification_message.html')

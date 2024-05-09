@@ -39,18 +39,6 @@
     });
 
 
-    // Header carousel
-    $(".header-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        loop: true,
-        nav: false,
-        dots: true,
-        items: 1,
-        dotsData: true,
-    });
-
-
     // Offline Carousel
     $('.class-carousel').owlCarousel({
     center: false,

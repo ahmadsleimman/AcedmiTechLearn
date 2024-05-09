@@ -30,7 +30,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-    'admincharts',
     'jazzmin',
     'daphne',
     'django.contrib.admin',
@@ -52,7 +51,7 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-# SOCIALACCOUNT_EMAIL_REQUIRED = True
+
 SOCIALACCOUNT_PROVIDER = {
     "google": {
         "SCOPE": ["email", "profile"],

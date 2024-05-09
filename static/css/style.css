@@ -189,7 +189,7 @@ a {
 
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../img/page.webp) center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(../img/html.webp) center center no-repeat;
     background-size: cover;
 }
 
@@ -225,6 +225,7 @@ a {
 /*** Service ***/
 .service-item div {
     z-index: 1;
+    height:400px;
 }
 
 .service-item div::after {
